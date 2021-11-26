@@ -20,23 +20,19 @@
                     </thead>
                     <tbody>
                     <% @reservations.each do |reservation| %>
-                        <% @rooms.each do |room| %>
-                            <% if reservation.room_id==room.id %>
-                                <tr>
-                                    <td>
-                                        <% if room.image.attached? %>
-                                            <%= link_to (image_tag room.image, class: "index-image"), room_path(room) %>
-                                        <% end %>
-                                    </td>
-                                    <td><%= link_to room.room_name, room_path(room), class: "index_link" %></td>
-                                    <td><%= room.introduction %></td>
-                                    <td><%= reservation.all_price %></td>
-                                    <td><%= reservation.start_on.strftime("%Y年%m月%d日") %></td>
-                                    <td><%= reservation.end_on.strftime("%Y年%m月%d日") %></td>
-                                    <td><%= reservation.updated_at.to_s(:datetime_jp) %></td>
-                                </tr>
-                            <% end %>
-                        <% end %>
+                        <tr>
+                            <td>
+                                <% if reservation.room.image.attached? %>
+                                    <%= link_to (image_tag reservation.room.image, class: "index-image"), room_path(reservation.room) %>
+                                <% end %>
+                            </td>
+                            <td><%= link_to reservation.room.room_name, room_path(room), class: "index_link" %></td>
+                            <td><%= reservation.room.introduction %></td>
+                            <td><%= reservation.all_price %></td>
+                            <td><%= reservation.start_on.strftime("%Y年%m月%d日") %></td>
+                            <td><%= reservation.end_on.strftime("%Y年%m月%d日") %></td>
+                            <td><%= reservation.updated_at.to_s(:datetime_jp) %></td>
+                        </tr>
                     <% end %>
                     </tbody>
                 </table>
